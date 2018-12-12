@@ -10,9 +10,25 @@ public class Card {
         this.pointValue = pointValue;
     }
 
+    public String getRank()
+    {
+        return this.rank;
+    }
+
+    public int getSuit()
+    {
+        return this.suit;
+    }
+
+    public int getPointValue()
+    {
+        return this.pointValue;
+    }
+
     public boolean equals(Card otherCard)
     {
         if (otherCard.pointValue == pointValue) return true;
+        return false;
     }
 
     public String toString()
