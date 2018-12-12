@@ -4,7 +4,7 @@ public class Deck {
     ArrayList<Card> unDealt = new ArrayList<Card>();
     ArrayList<Card> dealt = new ArrayList<Card>();
 
-    public Deck(String[] rankArr, int[] suitArr, int[] pointArr)
+    public Deck(String[] ranks, int[] suits, int[] values)
     {
 
     }
