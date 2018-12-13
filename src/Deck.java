@@ -1,17 +1,25 @@
 import java.util.ArrayList;
 
 public class Deck {
-    ArrayList<Card> unDealt = new ArrayList<Card>();
-    ArrayList<Card> dealt = new ArrayList<Card>();
+    ArrayList<Card> unDealt;
+    ArrayList<Card> Dealt = new ArrayList<Card>();
 
-    public Deck(String[] ranks, int[] suits, int[] values)
+    public Deck(String[] ranks, String[] suits, int[] values)
     {
-
+        unDealt = new ArrayList<Card>();
+        for (int i = 0; i < suits.length; i++)
+        {
+            for (int j = 0; j < ranks.length; j++)
+            {
+                Card addCard = new Card(ranks[j], suits[j], values[j]);
+                unDealt.add(addCard);
+            }
+        }
     }
 
     public boolean isEmpty()
     {
-        if (dealt.size() == 0) return true;
+        if (Dealt.size() == 0) return true;
         return false;
     }
 
@@ -22,26 +30,27 @@ public class Deck {
 
     public Card deal()
     {
-        if (unDealt.size() == 0) return null;
-        dealt.add(unDealt.get(unDealt.size()-1));
-        unDealt.remove(unDealt.get(unDealt.size()-1));
-        return unDealt.get(unDealt.size()-1);
+        if(unDealt.size() > 0)
+        {
+            Dealt.add(unDealt.get(unDealt.size()-1));
+            unDealt.remove(unDealt.get(unDealt.size()-1));
+            return unDealt.get(unDealt.size()-1);
+        }
+        return null;
     }
 
     public void shuffle()
     {
-        for (int i = 0; i < dealt.size(); i++)
+        unDealt.addAll(Dealt);
+        Dealt.clear();
+        int rdm;
+        Card temp;
+        for(int k = unDealt.size()-1; k >= 1; k--)
         {
-            unDealt.add(dealt.get(i));
-            dealt.remove(i);
-        }
-        int rdm, temp;
-        for(int i = 51; i <= 1; i --)
-        {
-            rdm = (int)((Math.random()*51)+1);
-            temp = unDealt[rdm];
-            cards[rdm] = cards[i];
-            cards[i] = temp;
+            rdm = (int)(Math.random()*k);
+            temp = unDealt.get(rdm);
+            unDealt.set(rdm, unDealt.get(k));
+            unDealt.set(k,temp);
         }
     }
 }
